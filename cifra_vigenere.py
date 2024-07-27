@@ -4,7 +4,6 @@ import sys
 alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzáàâãäéèêëíìîïóòôõöúùûü!@#$%¨&*()_-+=][}{:;?\/°1234567890<>,.^~ '
 
 parametrosInformados = sys.argv[1:]
-print(parametrosInformados)
 
 if len(parametrosInformados) == 3:
     arquivo,chave,acao = parametrosInformados
