@@ -1,16 +1,13 @@
 import os
+import sys
 
 alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzáàâãäéèêëíìîïóòôõöúùûü!@#$%¨&*()_-+=][}{:;?\/°1234567890<>,.^~ '
 
-parametrosInformados = input()
+parametrosInformados = sys.argv[1:]
+print(parametrosInformados)
 
-if parametrosInformados != '' and parametrosInformados.find(' ') != -1:
-    parametros = parametrosInformados.split(' ')
-    if len(parametros) == 3:
-        arquivo,chave,acao = parametros
-    else:
-        print('É preciso informar os 3 parâmetros para executar a criptografia: caminho do arquivo, chave e ação!')
-        exit()
+if len(parametrosInformados) == 3:
+    arquivo,chave,acao = parametrosInformados
 else:
     print('É preciso informar os 3 parâmetros para executar a criptografia: caminho do arquivo, chave e ação!')
     exit()
@@ -22,6 +19,7 @@ def pegarConteudoArquivo():
     try:
         with open(arquivo, "r", encoding='utf-8') as texto:
             conteudo = texto.read()
+        return conteudo
     except FileNotFoundError:
         print("Caminho do arquivo não encontrado, tente novamente!")
 
@@ -31,7 +29,7 @@ def multiplicarChave(conteudo):
          exit()
     chave_nova = chave
     # se o tamanho da chave for menor que o tamanho do texto à ser criptografado 
-    if len(chave) < len(conteudo):
+    if len(str(chave)) < len(str(conteudo)):
             # dividir o tamanho do texto do arquivo pelo tamanho da chave
             # multiplicar a conta de cima pela chave, para repetir o texto o máximo de vezes possivel com o texto inteiro
             chave_nova = chave * (len(conteudo)//len(chave))
